@@ -1,0 +1,20 @@
+{% extends 'base.html' %} {% block title %}Login{% endblock %} {% block content
+    %}{% block content %}
+    <h2 class="form-header">Login</h2>
+    <form method="post" class="form-container">
+      {% csrf_token %}
+      {% comment %} <label for="email" class="form-label">Email:</label>
+      <input type="email" name="email" required class="form-input" />
+      <label for="password" class="form-label">Password:</label>
+      <input type="password" name="password" required class="form-input" />
+      <button type="submit" class="form-btn">Login</button> {% endcomment %}
+
+        {% for field in form %}
+        <label class="form-label">{{field.name | capfirst}}</label>
+        <input type="{{field.name}}" name="{{field.name}}" required class="form-input" />
+        {% endfor %}
+        <button type="submit" class="form-btn">Login</button> 
+
+
+    </form>
+    {% endblock %}

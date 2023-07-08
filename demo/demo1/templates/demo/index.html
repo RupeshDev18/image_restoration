@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Image Restoration</title>
+	<style>
+		/* Header styles */
+		*{
+			margin:0;
+			padding:0;
+			box-sizing:border-box;
+		}
+		header {
+		  background-color: #333;
+		  color: #fff;
+		  padding: 20px;
+		  text-align: center;
+		}
+		header h1{
+			color: #fff;
+		}
+		body {
+			{% comment %} overflow: hidden; {% endcomment %}
+			margin: 0;
+			padding: 0;
+			background-color: #f2f2f2;
+			font-family: Arial, sans-serif;
+		}
+		.main-container{
+			display:flex;
+			justify-content: space-between;
+			align-items:center;
+		}
+		.container {
+			margin:40px 100px;
+			{% comment %} width: 50%; {% endcomment %}
+			padding: 10px;
+			text-align: center;
+			background-color: #fff;
+			border-radius: 5px;
+			box-shadow: 0px 0px 5px #ccc;
+			width:100%;
+			height:70vh ;
+			{% comment %} min-height:200px; {% endcomment %}
+			
+		}
+		h1 {
+			color: #333;
+			font-size: 24px;
+			font-weight: bold;
+		}
+		input[type=file] {
+			display: block;
+			margin: 20px auto;
+			padding: 10px;
+			background-color: #f2f2f2;
+			border: none;
+			border-radius: 5px;
+			box-shadow: 0px 0px 5px #ccc;
+			outline: none;
+			font-size: 16px;
+			font-weight: bold;
+			color: #333;
+			cursor: pointer;
+		}
+		button {
+			display: block;
+			margin: 20px auto;
+			padding: 10px 20px;
+			background-color: #4CAF50;
+			color: #fff;
+			border: none;
+			border-radius: 5px;
+			box-shadow: 0px 0px 5px #ccc;
+			font-size: 16px;
+			font-weight: bold;
+			cursor: pointer;
+		}
+		img {
+			max-width: 100%;
+			height: auto;
+			margin: 20px auto;
+			box-shadow: 0px 0px 5px #ccc;
+			border-radius: 5px;
+		}
+		footer {
+			background-color: #f5f5f5;
+			padding: 20px;
+			text-align: center;
+		  }
+		  
+
+
+
+
+
+
+
+
+
+@import url("https://fonts.googleapis.com/css2?family=Piazzolla:wght@200;300;400;900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  height: 100vh;
+  font-family: "Poppins", sans-serif;
+}
+
+a {
+  text-decoration: none;
+  color: aliceblue;
+  display: inline-block;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px 40px;
+  background: #333;
+}
+.header .logo {
+  font-size: 1.5rem;
+}
+.header ul {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.header ul li {
+  list-style: none;
+  padding: 0 10px;
+}
+.header ul li .signup-btn {
+  background-color: #000;
+  padding: 10px 15px;
+  border-radius: 40px;
+  transition: 0.3s;
+}
+.header ul li .signup-btn:hover {
+  box-shadow: 5px 5px 20px rgba(255, 255, 255, 0.2);
+}
+
+.hero {
+  display: flex;
+  justify-content: space-between;
+  padding: 50px 150px;
+}
+.hero .hero-head {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 70vh;
+}
+.hero .hero-img {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.hero .hero-img form {
+  height: 50vh;
+  position: relative;
+  box-shadow: 20px 20px 30px rgba(0, 0, 0, 0.1);
+}
+.hero .hero-img form h2 {
+  text-align: center;
+  margin-top: 20px;
+}
+.hero .hero-img form input[type=file] {
+  position: absolute;
+  z-index: -1;
+  top: 30%;
+  left: 29%;
+  font-size: 17px;
+  color: #b8b8b8;
+}
+.hero .hero-img form .button {
+  display: inline-block;
+  position: absolute;
+  top: 26.5%;
+  left: 27.5%;
+  padding: 12px 30px;
+  cursor: pointer;
+  border-radius: 5px;
+  background-color: #8ebf42;
+  font-size: 16px;
+  font-weight: bold;
+  color: #fff;
+}
+.hero .hero-img form .btn {
+  display: inline-block;
+  position: absolute;
+  bottom: 20%;
+  left: 50%;
+  border: 0;
+  padding: 15px 30px;
+  background-color: blue;
+  color: white;
+  border-radius: 10px;
+}
+	</style>
+</head>
+<body>
+	<section class="header">
+        <div class="logo">
+            <a href="#">RestoPix</a>
+        </div>
+        <div class="login">
+            <ul>
+                <li><a href="#" class="login-btn">Login</a></li>
+                <li><a href="#" class="signup-btn">Sign Up</a></li>
+            </ul>
+        </div>
+    </section>
+	<div class="main-container">
+		<div class="container">
+			<h1>Image Restoration</h1>
+			<form method="POST" enctype="multipart/form-data">
+				{% csrf_token %}
+				<input type="file" name="image" required>
+				<button type="submit">Restore</button>
+			</form>
+			{% if result %}
+			<img src="{{ result }}" alt="Restored Image" width="250px">
+			{% endif %}
+		</div>
+		<div class="container">
+			<h1> About Us</h1>
+			<p>Hi, Myself Rupesh Welcome to Restopix. </p>
+		</div>
+	</div>
+	<footer>
+	 	<p>&copy; 2023 Restopix. All rights reserved.</p>
+	</footer>
+</body>
+</html>

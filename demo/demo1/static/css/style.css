@@ -1,0 +1,94 @@
+/* Form container */
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+ /* Header styles */
+ .header {
+  background-color: #333;
+  color: #fff;
+  padding: 20px;
+  text-align: center;
+  /* flex-direction: column; */
+}
+.container{
+  margin: 50px;
+}
+h1,h2,.footer{
+  text-align: center;
+}
+.form-container {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.1);
+    margin: 20px auto;
+    padding: 20px;
+    max-width: 500px;
+  }
+  
+  /* Form input field */
+  .form-input {
+    background-color: #f6f6f6;
+    border: none;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size: 16px;
+    margin: 10px 0;
+    padding: 12px 20px;
+    width: 100%;
+  }
+  
+  /* Form button */
+  .form-btn {
+    background-color: #4CAF50;
+    border: none;
+    border-radius: 4px;
+    color: #fff;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 10px;
+    padding: 12px 20px;
+    width: 100%;
+  }
+  
+  .form-btn:hover {
+    background-color: #45a049;
+  }
+  
+  /* Form error message */
+  .form-error {
+    color: #ff0000;
+    font-size: 14px;
+    margin: 5px 0;
+  }
+  
+  /* Form success message */
+  .form-success {
+    color: #4CAF50;
+    font-size: 14px;
+    margin: 5px 0;
+  }
+  
+  /* Form label */
+  .form-label {
+    display: block;
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+  
+  /* Form link */
+  .form-link {
+    color: #4CAF50;
+    text-decoration: none;
+  }
+  
+  .form-link:hover {
+    text-decoration: underline;
+  }
+  
