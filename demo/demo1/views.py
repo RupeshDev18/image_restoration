@@ -4,11 +4,12 @@ from .forms import RegisterForm
 from django.core.files.storage import FileSystemStorage
 from django.contrib.auth.decorators import login_required
 import os
+from modelsA import model
 
-import tensorflow as tf
-# import keras
-from keras.models import load_model
-from tensorflow import Graph,Session
+# import tensorflow as tf
+# from keras.models import load_model
+# from tensorflow import Graph,Session
+import keras
 # from keras.preprocessing import image
 # import json
 # from tensorflow.keras.layers import conv2D,Dense,Input,Conv2DTranspose,AveragePooling2D,UpSampling2D
@@ -20,15 +21,18 @@ from tensorflow import Graph,Session
 # import pandas as pd
 
 
-
+# import pickle
+# model_pkl_file="models/model.joblib"
+# with open(model_pkl_file, 'rb') as file:
+#      model = pickle.load(file)
 
 
 # model=load_model('./models/')
-model_graph=Graph()
-with model_graph.as_default():
-    tf_session=Session()
-    with tf_session.as_default():
-        model=load_model('./models/model.joblib')
+# model_graph=Graph()
+# with model_graph.as_default():
+#     tf_session=Session()
+#     with tf_session.as_default():
+#         model=load_model('./models/model.joblib')
 
 
 
@@ -50,15 +54,17 @@ def index(request):
         # os.remove(os.path.join(settings.MEDIA_ROOT, filename))
         #Code for image processing
 
-        with model_graph.as_default():
-            with tf_session.as_default():
-                predi=model.predict(result)
+        # with model_graph.as_default():
+        #     with tf_session.as_default():
 
+        predi=model.predict(result)
+        context = {'result':predi}
 
-        context = {'result':result}
+        
         # context = {'result':predi}
         # Render the result page with the restored image
-        # context = {'result': fs.url(restored_img_filename)}
+        # context = {'result': fs.url(uploaded_file_url)}
+        # context = {'result': result}
         # return render(request, 'index.html', context)
         return render(request, 'demo/index.html',context)
     # Render the index page with the upload form
